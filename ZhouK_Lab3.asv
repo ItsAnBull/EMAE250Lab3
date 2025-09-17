@@ -4,7 +4,7 @@ function output = ZhouK_Lab3(num)
 if num > 0
     sign_num = '0';
 else
-    sign_num = '1';
+    sign_num = '0';
 end
 
 % isolate the whole part of the input
@@ -21,7 +21,7 @@ if whole > 0
 
     % the length of the mantissa counter is equal to the length of the
     % length of the mantissa
-    length = length(mant);
+    length = size(mant);
 
     % the exponent is equal to the length of the mantissa minus 1
     exp = length - 1;
@@ -41,7 +41,7 @@ end
 while length < 30
     
     % multiply the fractional part by 2 as per the algorithm
-    frac = frac * 2
+    frac = frac * 2;
     
     % Case 1: the fractional part is greater than or equal to 1 after it is
     % doubled
@@ -65,15 +65,24 @@ while length < 30
 
         % increase the length counter of the mantissa by 1
         length = length + 1;  
+        
+        exp = exp - 1
     end
 
 
 end
 
 % the biased exponent is equal to the exponent plus the offset (127)
-biased_exp = exp + 127;
+biased_exp = exp + 127
 
 % calculate the binary of the biased exponent
 bin_exp = dec2bin(biased_exp);
+
+% trim off the implied 1
+mant(1) = '';
+
+word = [sign_num, ' ', bin_exp, ' ', mant]
+
+
 
 

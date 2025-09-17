@@ -1,10 +1,10 @@
-function output = ZhouK_Lab3(num)
+function word = ZhouK_Lab3(num)
 
 % based on the sign of the input, set the 16th letter
 if num > 0
     sign_num = '0';
 else
-    sign_num = '1';
+    sign_num = '0';
 end
 
 % isolate the whole part of the input
@@ -21,7 +21,8 @@ if whole > 0
 
     % the length of the mantissa counter is equal to the length of the
     % length of the mantissa
-    length = length(mant);
+    length = size(mant);
+    length = length(2);
 
     % the exponent is equal to the length of the mantissa minus 1
     exp = length - 1;
@@ -38,13 +39,13 @@ end
 
 
 % run the loop only while the mantissa has less than 30 characters
-while length < 30
+while length < 24
     
     % multiply the fractional part by 2 as per the algorithm
-    frac = frac * 2
+    frac = frac * 2;
     
     % Case 1: the fractional part is greater than or equal to 1 after it is
-    % doubled
+    % doubled, then append 1 to the mantissa
     if frac >= 1
 
         % append a 1 to the mantissa
@@ -56,8 +57,8 @@ while length < 30
         % increase the length counter of the mantissa by 1
         length = length + 1;
 
-    % Case 2: disregard any leading zeroes by only appending digits to the
-    % mantissa if the length of it is greater than zero
+    % Case 2: if the exponent has been placed, then add the zero to the
+    % mantsisa
     elseif length ~= 0
 
         % append a zero to the end of the mantissa
@@ -65,6 +66,13 @@ while length < 30
 
         % increase the length counter of the mantissa by 1
         length = length + 1;  
+        
+    else
+    
+        % Case 3: if the exponent has not yet been placed, then decrement
+        % the exponent counter
+        exp = exp - 1;
+
     end
 
 
@@ -80,6 +88,7 @@ bin_exp = dec2bin(biased_exp);
 mant(1) = '';
 
 word = [sign_num, ' ', bin_exp, ' ', mant]
+x = size(word)
 
 
 
