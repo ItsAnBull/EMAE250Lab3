@@ -1,0 +1,15 @@
+function output = ZhouK_Lab3(num)
+
+% based on the sign of the input, set the 16th letter
+if num >= 0
+    sign_num = '0'
+else
+    sign_num = '1'
+end
+
+% isolate the whole part of the input
+whole = floor(abs(num))
+
+% isolate the fractional part of the input
+frac = abs(num) - whole
+
