@@ -13,16 +13,9 @@ whole = floor(abs(num));
 % isolate the fractional part of the input
 frac = abs(num) - whole;
 
-% deal with the whole part of the input
 if whole > 0
     mant = dec2bin(whole);
 else
     mant = '';
 end
-
-% store the length of the mantissa in a variable
-length = lenth(mant);
-
-
-
 
