@@ -15,13 +15,71 @@ frac = abs(num) - whole;
 
 % deal with the whole part of the input
 if whole > 0
+
+    % the mantissa becomes the binary of the whole part
     mant = dec2bin(whole);
+
+    % the length of the mantissa counter is equal to the length of the
+    % length of the mantissa
+    length = length(mant);
+
+    % the exponent is equal to the length of the mantissa minus 1
+    exp = length - 1;
 else
+    % the mantissa becomes empty
     mant = '';
+
+    % the length of the mantissa counter is equal to 0
+    length = 0;
+
+    % the exponent becomes zero
+    exp = 0;
 end
 
-% store the length of the mantissa in a variable
-length = lenth(mant);
+
+% run the loop only while the mantissa has less than 30 characters
+while length < 30
+    
+    % multiply the fractional part by 2 as per the algorithm
+    frac = frac * 2
+    
+    % Case 1: the fractional part is greater than or equal to 1 after it is
+    % doubled
+    if frac >= 1
+
+        % append a 1 to the mantissa
+        mant = [mant, '1'];
+
+        % subtract 1 from the fractional part
+        frac = frac - 1;
+
+        % increase the length counter of the mantissa by 1
+        length = length + 1;
+
+    % Case 2: disregard any leading zeroes by only appending digits to the
+    % mantissa if the length of it is greater than zero
+    elseif length ~= 0
+
+        % append a zero to the end of the mantissa
+        mant = [mant, '0'];
+
+        % increase the length counter of the mantissa by 1
+        length = length + 1;  
+    end
+
+
+end
+
+% the biased exponent is equal to the exponent plus the offset (127)
+biased_exp = exp + 127;
+
+% calculate the binary of the biased exponent
+bin_exp = dec2bin(biased_exp);
+
+% trim off the implied 1
+mant(1) = '';
+
+word = [sign_num, ' ', bin_exp, ' ', mant]
 
 
 
