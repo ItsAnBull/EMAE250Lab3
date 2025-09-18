@@ -1,3 +1,3 @@
 clc; clear all;
 
-out = ZhouK_Lab3(8.15);
+out = ZhouK_Lab3(1.1)
