@@ -87,24 +87,10 @@ while length < 24
 end
 
 % the biased exponent is equal to the exponent plus the offset (127)
-biased_exp = exp + 127
+biased_exp = exp + 127;
 
 % calculate the binary of the biased exponent
-bin_exp = dec2bin(biased_exp)
-
-% store the length of the binary exponent
-length = size(bin_exp);
-length = length(2);
-
-% ensure that the binary exponent has 8 digits
-while length < 8
-
-    % append a zero to the front of the binary exponent
-    bin_exp = ['0', bin_exp];
-
-    % increment the length counter
-    length = length + 1;
-end
+bin_exp = dec2bin(biased_exp,8);
 
 % trim off the implied 1 from the mantissa
 mant(1) = '';
